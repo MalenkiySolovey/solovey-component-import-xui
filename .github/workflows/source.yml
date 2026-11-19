@@ -1,0 +1,49 @@
+name: Import source
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+env:
+  GOWORK: 'off'
+  CGO_ENABLED: '1'
+  GOFLAGS: -mod=readonly
+
+jobs:
+  source:
+    name: import-source (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-2025]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-go@4a3601121dd01d1626a1e23e37211e3254c1c06c
+        with:
+          go-version-file: go.mod
+          cache-dependency-path: go.sum
+      - name: Check formatting and immutable dependency inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "$(gofmt -l $(git ls-files '*.go'))"
+          go mod tidy -diff
+          go mod verify
+          go list -deps -test ./... > "$RUNNER_TEMP/import-deps.txt"
+          if grep -Eq 'github.com/MalenkiySolovey/solovey-(ui|node)(/|$)|github.com/MalenkiySolovey/solovey-backend/(http|security|storage/(backup|sqlite|durableowner))(/|$)' "$RUNNER_TEMP/import-deps.txt"; then
+            echo 'Import source must not link a Panel runtime or destination database owner.'
+            exit 1
+          fi
+      - run: go test -race -count=1 ./...
+      - run: go vet ./...
+      - run: git diff --exit-code
