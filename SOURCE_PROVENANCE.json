@@ -5,5 +5,7 @@
   "originalCommit": "b4ad1694ed54ba25ae6723991bb8e6ba38d3e26f",
   "sourcePaths": ["components/import-xui/database", "components/import-xui/frontend", "components/import-xui/component.json"],
   "historyPolicy": "The original Product history is retained. This module owns source parsing, conversion, preview proposals and the optional UI using public Frontend entrypoints.",
-  "originalLicense": "GPL-3.0-only"
+  "originalLicense": "GPL-3.0-only",
+  "licenseSHA256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+  "manifestSHA256": "bd5e201609371ad36ee1bd6ae78efbb86adf082d678774162b3218275c64d6a3"
 }
