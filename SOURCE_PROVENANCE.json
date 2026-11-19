@@ -1,0 +1,9 @@
+{
+  "schema": "solovey.component.source-provenance/v1",
+  "component": "import-xui",
+  "originalRepository": "https://github.com/MalenkiySolovey/solovey-ui",
+  "originalCommit": "b4ad1694ed54ba25ae6723991bb8e6ba38d3e26f",
+  "sourcePaths": ["components/import-xui/database", "components/import-xui/frontend", "components/import-xui/component.json"],
+  "historyPolicy": "The original Product history is retained. This module owns source parsing, conversion, preview proposals and the optional UI using public Frontend entrypoints.",
+  "originalLicense": "GPL-3.0-only"
+}

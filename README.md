@@ -19,3 +19,8 @@ items built from these conversions and Panel-supplied destination facts. It
 blocks incomplete mappings and produces a revision independent of the staging
 path. Source and preview tests run here. Preview approval, Apply, rollback and
 integrated compatibility tests stay with Product and the resource owners.
+
+`frontend/` owns the existing Panel Import contribution and Backup slot,
+including its locales. It uses the public SDK commit recorded in
+`HOST_UI_PIN.json`; source CI typechecks it against that checkout. The Panel
+continues to authorize the same routes and issue the same Step-Up tokens.
