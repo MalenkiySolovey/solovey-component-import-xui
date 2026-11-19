@@ -40,7 +40,8 @@ jobs:
           go mod tidy -diff
           go mod verify
           go list -deps -test ./... > "$RUNNER_TEMP/import-deps.txt"
-          if grep -Eq 'github.com/MalenkiySolovey/solovey-(ui|node)(/|$)|github.com/MalenkiySolovey/solovey-backend/(http|security|storage/(backup|sqlite|durableowner))(/|$)' "$RUNNER_TEMP/import-deps.txt"; then
+          if grep -E '^github.com/MalenkiySolovey/solovey-(ui|host|node|backend)(/|$)' "$RUNNER_TEMP/import-deps.txt" |
+            grep -vE '^github.com/MalenkiySolovey/solovey-backend/(security|entityidentity|storage/(model|sqliteident))$'; then
             echo 'Import source must not link a Panel runtime or destination database owner.'
             exit 1
           fi
