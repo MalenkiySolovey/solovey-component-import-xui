@@ -1,0 +1,7 @@
+Solovey Panel Import
+
+Derived from MalenkiySolovey/solovey-ui under GPL-3.0-only.
+The source-only Import adapter and Panel contribution are maintained by
+MalenkiySolovey; the original source history remains in solovey-ui.
+
+The Panel owns authenticated upload, destination writes, Step-Up and rollback.
