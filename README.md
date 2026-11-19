@@ -24,3 +24,13 @@ integrated compatibility tests stay with Product and the resource owners.
 including its locales. It uses the public SDK commit recorded in
 `HOST_UI_PIN.json`; source CI typechecks it against that checkout. The Panel
 continues to authorize the same routes and issue the same Step-Up tokens.
+
+### Deferred adapters
+
+- R10/R11: qualify additional X-UI generations and `s-ui-x` / `s-ui-x-extended`
+  against versioned, read-only fixtures. Report unsupported or lossy fields in
+  the normalized preview before asking the destination owner to apply changes.
+- R10/R11: let operators preview and select user-supplied rule lists only after
+  the canonical Rules/GeoData owner can fetch, validate, and cache them. The
+  importer consumes the admitted bytes; it does not own a downloader,
+  scheduler, or routing matcher.
