@@ -14,6 +14,8 @@ adapter work, not implicit fallbacks for an unrecognized database.
 `source` opens a staged input read-only, recognizes its dialect and projects
 external records. `mapping` converts those records and prepares proposed target
 values. TLS matching operates on rows supplied by the destination owner; it
-cannot query or write the Panel database. Source probes and conversion tests run
-here. Preview approval, Apply, rollback and integrated compatibility tests stay
-with Product and the resource owners.
+cannot query or write the Panel database. `preview` classifies normalized Plan
+items built from these conversions and Panel-supplied destination facts. It
+blocks incomplete mappings and produces a revision independent of the staging
+path. Source and preview tests run here. Preview approval, Apply, rollback and
+integrated compatibility tests stay with Product and the resource owners.
